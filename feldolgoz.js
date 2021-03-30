@@ -11,16 +11,20 @@ var okj = [];
 
 
 function kiir() {
- 
-    var elem = "";
+
+    var elem = "<ul>";
 
     for (var i = 0; i < okj.length; i++) {
-        
-        elem += "<h2>"+okj[i].TODO+"</h2><h4>"+okj[i].DATUM+"</h4><h4>"+okj[i].ALLAPOT+"</h4><button class='torol'>Torol</button>";
+
+        elem += "<li>" + okj[i].TODO + "</li><li>" + okj[i].DATUM + "</li><li>" + okj[i].ALLAPOT + "</li><li><button class='torol' id='" + okj[i].ID + "'>Torol</button></li>";
 
     }
-    
- ID("okjtodo").innerHTML = elem;
+    elem += "</ul>";
+
+    ID("okjtodo").innerHTML = elem;
+    for (var i = 0; i < okj.length; i++) {
+        $(".torol")[i].addEventListener('click', torol, false);
+    }
     console.log(elem);
 
 }
@@ -37,6 +41,63 @@ function Rendez() {
 
     kiir();
 }
+function add() {
+    console.log("ADD");
+    var todo = ID("todo").value;
+    var datum = ID("datum").value;
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+            // okj = JSON.parse(this.responseText);
+            //  console.log(this.responseText);
+            // console.log(okj);
+            console.log("sikeres küldés");
+
+
+
+            //  console.log(okj);
+
+        }
+    };
+
+
+    xhttp.open("GET", "beir.php?todo=" + todo + "&datum=" + datum, true);
+    //+"&datum="+datum;
+    //  var kuldendoadatok = "todo="+todo;
+    xhttp.send();
+    //console.log(kuldendoadatok);
+
+}
+function torol() {
+    console.log("torol");
+    var id2 = this.id;
+    console.log(id2);
+
+
+    var xhttp = new XMLHttpRequest();
+
+    xhttp.onreadystatechange = function () {
+        if (this.readyState === 4 && this.status === 200) {
+   
+            console.log("sikeres törlés");
+
+
+
+            //  console.log(okj);
+
+        }
+    };
+
+
+    xhttp.open("DELETE", "torol.php?id=" + id2, true);
+
+    xhttp.send();
+ 
+
+
+}
 function adat_beolvas() {
     var xhttp = new XMLHttpRequest();
 
@@ -45,23 +106,24 @@ function adat_beolvas() {
             okj = JSON.parse(this.responseText);
             console.log(this.responseText);
             console.log(okj);
-           // kiir();
-            
+            kiir();
 
 
-         //  console.log(okj);
+
+            //  console.log(okj);
 
         }
     };
 
 
-    xhttp.open("GET", "okj.php", true);
+    xhttp.open("GET", "feldolgoz.php", true);
     xhttp.send();
 
 }
 function init() {
+    ID("add").addEventListener('click', add, false);
 
-adat_beolvas();
+    adat_beolvas();
 //    //ID('add').addEventListener("click", hozzaad, false);
 //    Rendez();
 //kiir();

@@ -11,18 +11,21 @@
         <link href="stilus.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-        <h1>Teendők</h1>
+
         <main>
-            <h2>TODO lista<h2>
-                    <input type="text" id="todo" name="todo">
-                    <input type="date" id="datum" name="datum">
-                    <button type="button" id="add">ADD</button>
-                       
-                    <article>
-                        
-                    </article>
-               
-                    </main>
-                    <footer>Komonyi Márk</footer>
-                    </body>
-                    </html>
+            <h1>Teendők</h1>
+            <h2>TODO lista</h2>
+            <input type="text" id="todo" name="todo">
+            <input type="date" id="datum" name="datum">
+            <button type="button" id="add">ADD</button>
+
+            <article>
+
+                <div id="okjtodo"></div>
+
+            </article>
+            <footer>Komonyi Márk</footer>
+        </main>
+
+    </body>
+</html>

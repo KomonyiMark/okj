@@ -1,39 +1,45 @@
 <?php
+
 class MySqlDB {
-    
-        private $db_szerver;
+
+    private $db_szerver;
     private $db_felhnev;
     private $db_jelszo;
     private $db_nev;
     private $kapcs;
 
-        public function __construct() {
-        $this->db_szerver = "localhost";
-        $this->db_felhnev = "root";
-        $this->db_jelszo = "";
-        $this->db_nev = "okj0329";
-        $this->kapcsolat();
-        
-//               $this->db_szerver = "tanulo19.szf1a.oktatas.szamalk-szalezi.hu";
-//        $this->db_felhnev = "c1_tanulo19szf1a";
-//        $this->db_jelszo = "_tanulo19szf1a";
-//        $this->db_nev = "c1ABtanulo19szf1a";
+    public function __construct() {
+//        $this->db_szerver = "localhost";
+//        $this->db_felhnev = "root";
+//        $this->db_jelszo = "";
+//        $this->db_nev = "okj0329";
 //        $this->kapcsolat();
-        
-        
+
+               $this->db_szerver = "tanulo19.szf1a.oktatas.szamalk-szalezi.hu";
+        $this->db_felhnev = "c1_tanulo19szf1a";
+        $this->db_jelszo = "_tanulo19szf1a";
+        $this->db_nev = "c1ABtanulo19szf1a";
+        $this->kapcsolat();
     }
-        public function kapcsolat() {
+
+    public function kapcsolat() {
         $this->kapcs = new mysqli($this->db_szerver, $this->db_felhnev, $this->db_jelszo, $this->db_nev);
+        
         $this->kapcs->set_charset('utf8');
+        //echo "kapcsolat";
         if ($this->kapcs->connect_error) {
             die("Kapcsolódás nem sikerült: " . $this->kapcs->connect_error);
         }
-        }
-            function lekerdez($tablaNeve, $where=1) {
+    }
+
+    function lekerdez($tablaNeve, $where = 1) {
 //        $this->kapcsolat();
         $sql = "SELECT * FROM " . $tablaNeve . " WHERE " . $where;
+       // echo $sql;
         $sql = $this->kapcs->query($sql);
 //        $sql = $sql->fetch_assoc();
+      //  echo "lekerdez";
+     //   echo $sql;
         return $sql;
     }
 
@@ -53,9 +59,9 @@ class MySqlDB {
     function ujRekord($tablaNeve, $oszlopok, $ertekek) {
 //        $this->kapcsolat();
         $sql = "INSERT INTO " . $tablaNeve . " " . $oszlopok . " VALUES " . $ertekek;
-      
+
         $sql = $this->kapcs->query($sql);
-        
+
         if ($sql == true) {
             return $sql;
         } else {

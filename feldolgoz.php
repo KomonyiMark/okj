@@ -1,12 +1,12 @@
 <?php
 
-require './MySqlDB.php';
+require './ABKapcsolat.php';
 
 $mySql = new MySqlDB();
 
 $OKJ = array();
 $result = $mySql->lekerdez("okj0329");
-
+//print_r($result);
 
 if ($result->num_rows > 0) {
     // output data of each row
