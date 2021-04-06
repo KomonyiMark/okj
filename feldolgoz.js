@@ -134,7 +134,7 @@
 //
 //
 $(function () {
-
+ $("article").delegate(".modosit","click", modosit);
 beolvas();
  $("article").delegate(".torol","click", torol);
   $("#add").on("click", add);
@@ -163,7 +163,7 @@ function beolvas() {
 
     for (var i = 0; i < okj.length; i++) {
 
-        elem += "<li>" + okj[i].TODO + "</li><li>" + okj[i].DATUM + "</li><li>" + okj[i].ALLAPOT + "</li><li><img src=\"../../OKJGYAK/kuka.png\" id='" + okj[i].ID + "' alt=\"\" class='torol'/></li>";
+        elem += "<li>" + okj[i].TODO + "</li><li>" + okj[i].DATUM + "</li><li>" + okj[i].ALLAPOT + "</li><li><img src=\"kuka.png\" id='" + okj[i].ID + "' alt=\"\" class='torol'/></li><li><img src=\"pipa.png\" id='" + okj[i].ID + "' alt=\"\" class='modosit'/></li>";
 
     }
     elem += "</ul>";
@@ -222,3 +222,6 @@ function beolvas() {
         }
     });
         }
+function modosit(){
+    console.log("MÉG SEMMIT");
+}
